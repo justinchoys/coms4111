@@ -57,8 +57,8 @@ CREATE TABLE buy (
 	dealPrice		INTEGER,
 	PRIMARY KEY (buyerID, bAge, dealDate, propertyID),
 	FOREIGN KEY (buyerID, bAge) REFERENCES buyer,
-	FOREIGN KEY (propertyID) REFERENCES property),
-	CHECK (dealPrice > 0);
+	FOREIGN KEY (propertyID) REFERENCES property,
+	CHECK (dealPrice > 0));
 	
 /* include bAge since buyer’s age can change over time */
 
@@ -70,8 +70,8 @@ CREATE TABLE sell (
 	askPrice		INTEGER,
 	PRIMARY KEY (sellerID, sAge, listDate, propertyID),
 	FOREIGN KEY (sellerID, sAge) REFERENCES seller,
-	FOREIGN KEY (propertyID) REFERENCES property),
-	CHECK (askPrice > 0);
+	FOREIGN KEY (propertyID) REFERENCES property,
+	CHECK (askPrice > 0));
 
 
 CREATE TABLE sell_hire (
@@ -88,8 +88,8 @@ CREATE TABLE sell_hire (
 
 	PRIMARY KEY (sellerID, sAge, listDate, propertyID),
 	FOREIGN KEY (sellerID, sAge, listDate, propertyID) REFERENCES sell,
-	FOREIGN KEY (agentID) REFERENCES agent_employed),
-	CHECK (listDate >= sStartDate AND listDate <= sEndDate);
+	FOREIGN KEY (agentID) REFERENCES agent_employed,
+	CHECK (listDate >= sStartDate AND listDate <= sEndDate));
 
 
 CREATE TABLE buy_hire (
@@ -106,8 +106,8 @@ CREATE TABLE buy_hire (
 	
 	PRIMARY KEY (buyerID, bAge, dealDate, propertyID),
 	FOREIGN KEY (buyerID, bAge, dealDate, propertyID) REFERENCES buy,
-	FOREIGN KEY (agentID) REFERENCES agent_employed),
-	CHECK (dealDate >= bStartDate AND dealDate <= bEndDate);
+	FOREIGN KEY (agentID) REFERENCES agent_employed,
+	CHECK (dealDate >= bStartDate AND dealDate <= bEndDate));
 
 CREATE TABLE lender (
 	lenderID 		VARCHAR(20),
@@ -129,5 +129,5 @@ CREATE TABLE borrows (
 
 	PRIMARY KEY (buyerID, bAge, dealDate, propertyID),
 	FOREIGN KEY (buyerID, bAge, dealDate, propertyID) REFERENCES buy,
-	FOREIGN KEY (lenderID) REFERENCES lender),
-	CHECK (term >= 0 AND amount > 0 AND interestRate > 0);
+	FOREIGN KEY (lenderID) REFERENCES lender,
+	CHECK (term >= 0 AND amount > 0 AND interestRate > 0));
