@@ -99,7 +99,7 @@ CREATE TABLE buy_hire (
 	bEndDate 		DATE,
 	
 	PRIMARY KEY (buyerID, bAge, dealDate, propertyID),
-	FOREIGN KEY (buyerID, bAge, propertyID, dealDATE) REFERENCES buy,
+	FOREIGN KEY (buyerID, bAge, dealDate, propertyID) REFERENCES buy,
 	FOREIGN KEY (agentID) REFERENCES agent_employed);
 
 CREATE TABLE lender (
@@ -120,6 +120,6 @@ CREATE TABLE borrows (
 	amount 			REAL,
 	interestRate 	REAL,
 
-	PRIMARY KEY (buyerID, bAge, dealDate, propertyID)
+	PRIMARY KEY (buyerID, bAge, dealDate, propertyID),
 	FOREIGN KEY (buyerID, bAge, dealDate, propertyID) REFERENCES buy,
 	FOREIGN KEY (lenderID) REFERENCES ender);
