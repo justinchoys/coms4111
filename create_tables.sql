@@ -122,4 +122,4 @@ CREATE TABLE borrows (
 
 	PRIMARY KEY (buyerID, bAge, dealDate, propertyID),
 	FOREIGN KEY (buyerID, bAge, dealDate, propertyID) REFERENCES buy,
-	FOREIGN KEY (lenderID) REFERENCES ender);
+	FOREIGN KEY (lenderID) REFERENCES lender);
